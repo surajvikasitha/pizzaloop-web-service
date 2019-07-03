@@ -29,6 +29,11 @@ public class MainController {
         return pizzaRepository.findAll();
     }
 
+    /*
+     * READ Operation
+     * This method will list all the Order in the table
+     * URI to access this: http://localhost:8080/demo/cart
+     */
     @GetMapping(path="/cart")
     public @ResponseBody Iterable<OrderDetails> getOrderDetails() {
         return orderRepository.findAll();
@@ -44,7 +49,11 @@ public class MainController {
     public @ResponseBody List<PizzaDetails> getPizzaById(@RequestParam Integer id) {
         return pizzaRepository.findByPizzaId(id);
     }
-
+    /*
+     * READ Operation based on Cart ID
+     * This method will return the details of a pizza specified by the id
+     * URI to access this: http://localhost:8080/demo/findByCartId?id=2
+     */
     @GetMapping(path="/findByCartId")
     public @ResponseBody List<OrderDetails> getcartById(@RequestParam Integer id) {
         return orderRepository.findByCartId(id);
@@ -65,7 +74,12 @@ public class MainController {
         pizzaRepository.save(pizzaDetails);
         return SUCCESS;
     }
-
+    /*
+     * CREATE Operation
+     * This method will crate new order cart item in the database table
+     * and returns the SUCCESS message
+     * URI to access this: http://localhost:8080/demo/add?name=VegiPizza&price=2500.75
+     */
 
     @GetMapping(path="/addcart")
     public @ResponseBody String addNewOrder(@RequestParam String name,  @RequestParam Double price,@RequestParam String imageUrl) {
@@ -87,6 +101,12 @@ public class MainController {
     public @ResponseBody List<PizzaDetails> deletePizzaById(@RequestParam Integer id) {
         return pizzaRepository.deleteByPizzaId(id);
     }
+    /*
+     * DELETE Operation
+     * This method will delete existing Order item by finding it using the ID
+     * and returns the deleted item
+     * URI to access this: http://localhost:8080/demo/deleteByCartId?id=2
+     */
 
     @GetMapping(path="/deleteByCartId")
     public @ResponseBody List<OrderDetails> deleteCartById(@RequestParam Integer id) {
